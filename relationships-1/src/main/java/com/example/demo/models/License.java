@@ -1,6 +1,5 @@
 package com.example.demo.models;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -37,11 +36,12 @@ public class License {
 	}
 	
 	public String getNumberAsString() {
-		int numZeros = 7 - String.valueOf(this.number).length();
-		StringBuilder sb = new StringBuilder();
+		int numZeros = 6 - String.valueOf(this.number).length();
+		String sb = "";
 		for(int i = 0; i < numZeros; i++)
-			sb.append('0');
-		return String.format("%s%d", sb, this.number);
+			sb += "0";
+		sb += this.number;
+		return sb;
 	}
 	
 	public Long getId() {
@@ -62,11 +62,6 @@ public class License {
 	
 	public Date getExpirationDate() {
 		return expirationDate;
-	}
-	
-	public String getExpirationDateFormatted() {
-		SimpleDateFormat fm = new SimpleDateFormat("MM/dd/yyyy");
-		return fm.format(this.expirationDate);
 	}
 	
 	public void setExpirationDate(Date expirationDate) {
